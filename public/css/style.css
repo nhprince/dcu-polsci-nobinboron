@@ -732,3 +732,21 @@ select {
   border-radius: 50%;
   display: block;
 }
+
+/* Developer credit */
+
+.dev-credit {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+}
+
+.dev-credit a {
+  color: var(--color-accent-dark);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dev-credit a:hover {
+  text-decoration: underline;
+}

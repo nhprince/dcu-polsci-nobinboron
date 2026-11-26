@@ -60,6 +60,16 @@ body.admin-body {
   display: block;
 }
 
+.login-card .dev-credit {
+  margin: 1.3rem 0 0;
+}
+
+/* Developer credit (dashboard footer) */
+
+.admin-credit {
+  margin: 2rem 0 1.5rem;
+}
+
 /* App shell */
 
 .app-shell {
