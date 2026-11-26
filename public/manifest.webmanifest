@@ -1,0 +1,13 @@
+{
+  "name": "নবীনবরণ ২০২৫–২৬ — রাষ্ট্রবিজ্ঞান বিভাগ",
+  "short_name": "নবীনবরণ ২০২৫–২৬",
+  "description": "রাষ্ট্রবিজ্ঞান বিভাগ, ঢাকা সেন্ট্রাল ইউনিভার্সিটি (সরকারি শহীদ সোহরাওয়ার্দী কলেজ ক্যাম্পাস) — নবীনবরণ ২০২৫–২৬ নিবন্ধন",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#162a52",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

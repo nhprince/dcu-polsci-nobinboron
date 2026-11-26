@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>অ্যাডমিন প্যানেল — নবীনবরণ ২০২৫–২৬ | রাষ্ট্রবিজ্ঞান বিভাগ</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#162a52" />
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+<link rel="stylesheet" href="/css/style.css" />
+<link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+
+<!-- Login screen -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-card">
+    <img class="crest-logo" src="/assets/logo.png" alt="রাষ্ট্রবিজ্ঞান বিভাগ লোগো" />
+    <h1>অ্যাডমিন প্যানেল</h1>
+    <p>নবীনবরণ ২০২৫–২৬ · রাষ্ট্রবিজ্ঞান বিভাগ<br />ঢাকা সেন্ট্রাল ইউনিভার্সিটি</p>
+    <div class="login-error" id="loginError"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="password">পাসওয়ার্ড</label>
+        <input type="password" id="password" name="password" autocomplete="current-password" required autofocus />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">লগইন করুন</button>
+    </form>
+  </div>
+</div>
+
+<!-- App shell -->
+<div class="app-shell" id="appShell">
+  <div class="topbar">
+    <div class="brand">
+      <img class="brand-icon" src="/assets/logo.png" alt="রাষ্ট্রবিজ্ঞান বিভাগ লোগো" />
+      <div class="brand-text">
+        <strong>নবীনবরণ ২০২৫–২৬ অ্যাডমিন</strong>
+        <span>রাষ্ট্রবিজ্ঞান বিভাগ · ঢাকা সেন্ট্রাল ইউনিভার্সিটি</span>
+      </div>
+    </div>
+    <button class="btn btn-ghost btn-sm" id="logoutBtn">লগআউট</button>
+  </div>
+
+  <div class="dashboard">
+
+    <div class="dashboard-heading">
+      <h2>নবীন শিক্ষার্থী নিবন্ধন তালিকা</h2>
+      <p>সরকারি শহীদ সোহরাওয়ার্দী কলেজ ক্যাম্পাস — রাষ্ট্রবিজ্ঞান বিভাগের ২০২৫–২৬ শিক্ষাবর্ষের নিবন্ধিত শিক্ষার্থীবৃন্দ।</p>
+    </div>
+
+    <div class="stat-grid" id="statGrid">
+      <div class="stat-card">
+        <div class="value" id="statTotal">—</div>
+        <div class="label">মোট নিবন্ধন</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="value" id="statAttending">—</div>
+        <div class="label">অংশগ্রহণ করবে (হ্যাঁ)</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statTalents">—</div>
+        <div class="label">বিশেষ প্রতিভা / পরিবেশনা</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="statRecent">—</div>
+        <div class="label">গত ৭ দিনে নিবন্ধন</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>নিবন্ধন ও অংশগ্রহণ পরিসংখ্যান</h3>
+      <div class="chart-wrap">
+        <canvas id="overviewChart"></canvas>
+      </div>
+    </div>
+
+    <div class="controls">
+      <input type="text" class="search-input" id="searchInput" placeholder="নাম, আইডি/রোল, ই-মেইল, মোবাইল বা প্রতিভা দিয়ে খুঁজুন" />
+      <select id="attendFilter">
+        <option value="">সব অংশগ্রহণ</option>
+        <option value="হ্যাঁ">অংশগ্রহণ: হ্যাঁ</option>
+        <option value="না">অংশগ্রহণ: না</option>
+      </select>
+      <select id="talentFilter">
+        <option value="">সব প্রতিভা</option>
+        <option value="হ্যাঁ">বিশেষ প্রতিভা আছে</option>
+      </select>
+      <select id="statusFilter">
+        <option value="">সব অবস্থা</option>
+        <option value="confirmed">নিশ্চিতকৃত</option>
+        <option value="pending">অপেক্ষমাণ</option>
+      </select>
+      <select id="sortSelect">
+        <option value="created_at:desc">নতুন থেকে পুরোনো</option>
+        <option value="created_at:asc">পুরোনো থেকে নতুন</option>
+        <option value="full_name:asc">নাম (ক–হ / A–Z)</option>
+        <option value="full_name:desc">নাম (হ–ক / Z–A)</option>
+        <option value="student_id:asc">আইডি / রোল</option>
+      </select>
+      <div class="spacer"></div>
+      <button class="btn btn-ghost btn-sm" id="selectPendingBtn">অপেক্ষমাণ সব নির্বাচন</button>
+      <button class="btn btn-ghost btn-sm" id="exportBtn">CSV ডাউনলোড</button>
+    </div>
+
+    <div class="bulk-bar" id="bulkBar">
+      <span id="bulkCount">০ টি নির্বাচিত</span>
+      <div class="bulk-bar-actions">
+        <button class="btn btn-primary btn-sm" id="bulkConfirmBtn">নির্বাচিতদের ই-মেইল পাঠান</button>
+        <button class="btn btn-ghost btn-sm" id="bulkClearBtn">বাতিল</button>
+      </div>
+    </div>
+
+    <div class="result-count" id="resultCount"></div>
+
+    <div class="table-panel">
+      <table class="members-table">
+        <thead>
+          <tr>
+            <th class="col-check"><input type="checkbox" id="selectAllCheckbox" title="সবগুলো নির্বাচন করুন" /></th>
+            <th>শিক্ষার্থীর নাম</th>
+            <th>আইডি / রোল</th>
+            <th>যোগাযোগ</th>
+            <th>অংশগ্রহণ</th>
+            <th>বিশেষ প্রতিভা</th>
+            <th>নিবন্ধনের তারিখ</th>
+            <th>অবস্থা</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="membersTableBody">
+          <tr class="loading-row"><td colspan="9">তালিকা লোড হচ্ছে…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- View member modal -->
+<div class="modal-overlay" id="viewModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>শিক্ষার্থীর বিস্তারিত তথ্য</h3>
+      <button class="modal-close" data-close="viewModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <div id="viewModalBody"></div>
+  </div>
+</div>
+
+<!-- Edit member modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3>তথ্য সম্পাদনা</h3>
+      <button class="modal-close" data-close="editModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <form id="editForm">
+      <input type="hidden" id="edit_id" />
+      <div id="editModalBody"></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" data-close="editModal">বাতিল</button>
+        <button type="submit" class="btn btn-primary" id="saveEditBtn">সংরক্ষণ করুন</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Delete confirm modal -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>নিবন্ধন মুছে ফেলবেন?</h3>
+      <button class="modal-close" data-close="deleteModal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"></path></svg>
+      </button>
+    </div>
+    <p class="confirm-text">এটি <strong id="deleteMemberName">এই শিক্ষার্থীর</strong> নিবন্ধনের তথ্য স্থায়ীভাবে মুছে ফেলবে। এটি আর ফিরিয়ে আনা যাবে না।</p>
+    <div class="modal-actions">
+      <button type="button" class="btn btn-ghost" data-close="deleteModal">বাতিল</button>
+      <button type="button" class="btn btn-danger" id="confirmDeleteBtn">মুছে ফেলুন</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

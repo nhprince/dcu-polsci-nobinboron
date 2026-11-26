@@ -1,0 +1,18 @@
+{
+  "name": "dcu-polsci-nobinboron",
+  "version": "1.0.0",
+  "private": true,
+  "description": "নবীনবরণ ২০২৫–২৬ নিবন্ধন ফর্ম ও অ্যাডমিন প্যানেল — রাষ্ট্রবিজ্ঞান বিভাগ, ঢাকা সেন্ট্রাল ইউনিভার্সিটি (সরকারি শহীদ সোহরাওয়ার্দী কলেজ ক্যাম্পাস)",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public",
+    "db:create": "wrangler d1 create dcu_polsci_nobinboron_db",
+    "db:init:remote": "wrangler d1 execute dcu_polsci_nobinboron_db --remote --file=./schema.sql",
+    "db:init:local": "wrangler d1 execute dcu_polsci_nobinboron_db --local --file=./schema.sql",
+    "secret:admin-password": "wrangler pages secret put ADMIN_PASSWORD",
+    "secret:session-secret": "wrangler pages secret put SESSION_SECRET"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
