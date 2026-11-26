@@ -7,4 +7,4 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "dcu_polsci_nobinboron_db"
-database_id = "REPLACE_WITH_YOUR_DATABASE_ID"
+database_id = "c24836e0-3695-4e67-b40d-842e81131d71"
